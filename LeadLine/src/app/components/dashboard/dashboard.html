@@ -1,0 +1,7 @@
+<div class="container" *ngIf="userProfile$ | async as user">
+    <h1>Dashboard</h1>
+    <p class="mb-4">Welcome back, <strong>{{ user.displayName }}</strong>!</p>
+
+    <app-admin-dashboard *ngIf="user.role === 'admin'"></app-admin-dashboard>
+    <app-user-dashboard *ngIf="user.role !== 'admin'"></app-user-dashboard>
+</div>

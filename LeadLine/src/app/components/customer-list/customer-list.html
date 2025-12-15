@@ -1,0 +1,224 @@
+<div class="customer-database">
+    <div class="header">
+        <h1>Customer Database</h1>
+        <div class="header-actions">
+            <input type="text" class="search-box" placeholder="Search by company, location, or industry..."
+                (input)="onSearch($event)">
+            <a routerLink="/customers/new" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Add Customer
+            </a>
+        </div>
+    </div>
+
+    <!-- Customers List as Rows -->
+    <div class="customers-container">
+        <div class="customer-row-header">
+            <div class="col-company">Company</div>
+            <div class="col-location">Location</div>
+            <div class="col-industry">Industry</div>
+            <div class="col-potential">Potential</div>
+            <div class="col-stage">Stage</div>
+            <div class="col-actions">Actions</div>
+        </div>
+
+        <div *ngFor="let customer of paginatedCustomers" class="customer-row">
+            <div class="col-company">
+                <div class="company-info">
+                    <div class="company-avatar">{{ getInitials(customer.companyName) }}</div>
+                    <div class="company-details">
+                        <div class="company-name">{{ customer.companyName }}</div>
+                        <a *ngIf="customer.website" [href]="customer.website" target="_blank" class="company-website">
+                            {{ customer.website }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-location">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                {{ customer.location }}
+            </div>
+            <div class="col-industry">
+                <span class="industry-badge">{{ customer.industry }}</span>
+            </div>
+            <div class="col-potential">
+                <span class="potential-value" *ngIf="customer.customerPotential">₹{{ customer.customerPotential
+                    }}</span>
+                <span class="text-muted" *ngIf="!customer.customerPotential">-</span>
+            </div>
+            <div class="col-stage">
+                <span class="stage-badge" [ngClass]="getStageClass(customer.stage)">
+                    {{ customer.stage || 'In Progress' }}
+                </span>
+            </div>
+            <div class="col-actions">
+                <button class="btn-icon" (click)="viewDetails(customer)" title="View Details">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </button>
+                <a [routerLink]="['/customers', customer.id]" class="btn-icon" title="Edit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div *ngIf="paginatedCustomers.length === 0" class="empty-state">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="8.5" cy="7" r="4"></circle>
+                <line x1="20" y1="8" x2="20" y2="14"></line>
+                <line x1="23" y1="11" x2="17" y2="11"></line>
+            </svg>
+            <p>No customers found</p>
+            <a routerLink="/customers/new" class="btn btn-primary">Add Your First Customer</a>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" *ngIf="totalPages > 1">
+        <button class="page-btn" (click)="previousPage()" [disabled]="currentPage === 1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            Previous
+        </button>
+
+        <div class="page-numbers">
+            <button *ngFor="let page of getPageNumbers()" class="page-number" [class.active]="page === currentPage"
+                (click)="goToPage(page)">
+                {{ page }}
+            </button>
+        </div>
+
+        <button class="page-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+            Next
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Pagination Info -->
+    <div class="pagination-info" *ngIf="totalCustomers > 0">
+        Showing {{ (currentPage - 1) * pageSize + 1 }} to {{ Math.min(currentPage * pageSize, totalCustomers) }} of {{
+        totalCustomers }} customers
+    </div>
+</div>
+
+<!-- Detail Modal (keeping existing modal) -->
+<div class="modal-overlay" *ngIf="showDetailModal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <button class="modal-close" (click)="closeModal()">×</button>
+
+        <div class="modal-tabs">
+            <button class="tab" [class.active]="activeTab === 'profile'" (click)="setActiveTab('profile')">
+                Company Profile
+            </button>
+            <button class="tab" [class.active]="activeTab === 'audit'" (click)="setActiveTab('audit')">
+                Audit Log & History
+            </button>
+        </div>
+
+        <div class="modal-body" *ngIf="selectedCustomer">
+            <!-- Company Profile Tab -->
+            <div *ngIf="activeTab === 'profile'" class="profile-content">
+                <div class="profile-header">
+                    <div class="company-avatar-large">{{ getInitials(selectedCustomer.companyName) }}</div>
+                    <div>
+                        <h2>{{ selectedCustomer.companyName }}</h2>
+                        <p class="company-location">{{ selectedCustomer.location }}</p>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-item">
+                        <label>Industry</label>
+                        <span class="industry-badge">{{ selectedCustomer.industry }}</span>
+                    </div>
+                    <div class="profile-item">
+                        <label>Website</label>
+                        <a *ngIf="selectedCustomer.website" [href]="selectedCustomer.website" target="_blank">{{
+                            selectedCustomer.website }}</a>
+                        <span *ngIf="!selectedCustomer.website">-</span>
+                    </div>
+                    <div class="profile-item">
+                        <label>Revenue Potential</label>
+                        <span class="potential-large" *ngIf="selectedCustomer.customerPotential">₹{{
+                            selectedCustomer.customerPotential }}</span>
+                        <span *ngIf="!selectedCustomer.customerPotential">-</span>
+                    </div>
+                    <div class="profile-item">
+                        <label>Total Attempts</label>
+                        <span>{{ totalAttempts }}</span>
+                    </div>
+                </div>
+
+                <div class="contact-section" *ngIf="selectedCustomer.contactPerson1?.name">
+                    <h3>Primary Contact</h3>
+                    <div class="contact-card">
+                        <div class="contact-avatar">{{ selectedCustomer.contactPerson1.name.charAt(0) }}</div>
+                        <div class="contact-details">
+                            <div class="contact-name">{{ selectedCustomer.contactPerson1.name }}</div>
+                            <div class="contact-designation">{{ selectedCustomer.contactPerson1.designation }}</div>
+                            <div class="contact-info">
+                                <span *ngIf="selectedCustomer.contactPerson1.mobile">📞 {{
+                                    selectedCustomer.contactPerson1.mobile }}</span>
+                                <span *ngIf="selectedCustomer.contactPerson1.email">✉️ {{
+                                    selectedCustomer.contactPerson1.email }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a [routerLink]="['/customers', selectedCustomer.id]" class="btn btn-primary" (click)="closeModal()">
+                    Edit Details
+                </a>
+            </div>
+
+            <!-- Audit Log Tab -->
+            <div *ngIf="activeTab === 'audit'" class="audit-content">
+                <div class="audit-timeline">
+                    <div *ngFor="let log of selectedCustomer.auditLog" class="audit-item">
+                        <div class="audit-icon" [class.create]="log.action === 'create'">
+                            <svg *ngIf="log.action === 'create'" xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            <svg *ngIf="log.action === 'update'" xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </div>
+                        <div class="audit-details">
+                            <div class="audit-action">{{ log.action === 'create' ? 'Created' : 'Updated' }}</div>
+                            <div class="audit-description">{{ log.details }}</div>
+                            <div class="audit-time">{{ log.timestamp | date:'medium' }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

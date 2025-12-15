@@ -1,0 +1,76 @@
+<!-- Customer Database Growth -->
+<div class="card">
+    <div class="growth-header">
+        <div>
+            <h3>Customer Database Growth</h3>
+            <p class="chart-subtitle">Track how your customer database is expanding over time</p>
+        </div>
+        <div class="growth-controls">
+            <select class="filter-select" [(ngModel)]="growthViewType" (change)="onGrowthViewChange(growthViewType)">
+                <option value="week">Week by Week</option>
+                <option value="month">Month by Month</option>
+            </select>
+            <select class="filter-select" [(ngModel)]="growthTimeRange" (change)="onTimeRangeChange(growthTimeRange)">
+                <option value="last30">Last 30 Days</option>
+                <option value="last90">Last 90 Days</option>
+                <option value="all">All Time</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Line Chart Visualization -->
+    <div class="line-chart-container">
+        <div class="chart-area">
+            <div class="y-axis">
+                <div class="y-label">{{ maxCumulative }}</div>
+                <div class="y-label">{{ Math.floor(maxCumulative * 0.75) }}</div>
+                <div class="y-label">{{ Math.floor(maxCumulative * 0.5) }}</div>
+                <div class="y-label">{{ Math.floor(maxCumulative * 0.25) }}</div>
+                <div class="y-label">0</div>
+            </div>
+            <div class="chart-content">
+                <div class="chart-grid">
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
+                </div>
+                <div class="chart-bars">
+                    <div *ngFor="let data of filteredGrowth; let i = index" class="chart-column">
+                        <div class="bar-container">
+                            <div class="area-bar" [style.height.%]="getChartHeight(data.cumulative)"
+                                [title]="data.cumulative + ' total customers'">
+                                <span class="bar-value">{{ data.cumulative }}</span>
+                            </div>
+                        </div>
+                        <div class="x-label" [class.show-label]="i % 2 === 0 || filteredGrowth.length < 15">
+                            {{ data.period }}
+                        </div>
+                        <div class="new-count" *ngIf="data.count > 0">+{{ data.count }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="filteredGrowth.length === 0" class="text-center text-secondary empty-state">
+            No customer data available for the selected period
+        </div>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="growth-summary" *ngIf="filteredGrowth.length > 0">
+        <div class="summary-item">
+            <span class="summary-label">Total Customers:</span>
+            <span class="summary-value">{{ maxCumulative }}</span>
+        </div>
+        <div class="summary-item">
+            <span class="summary-label">New in Period:</span>
+            <span class="summary-value success">+{{ filteredGrowth.reduce((sum, d) => sum + d.count, 0) }}</span>
+        </div>
+        <div class="summary-item">
+            <span class="summary-label">Avg per {{ growthViewType === 'week' ? 'Week' : 'Month' }}:</span>
+            <span class="summary-value">{{ (filteredGrowth.reduce((sum, d) => sum + d.count, 0) /
+                filteredGrowth.length).toFixed(1) }}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="container">
+    <div class="card">
+        <h2>{{ isEditMode ? 'Edit Customer' : 'Add Customer' }}</h2>
+
+        <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label class="form-label">Company Name</label>
+                <input type="text" class="form-control" formControlName="companyName">
+            </div>
+
+            <div class="flex gap-4">
+                <div class="form-group w-full">
+                    <label class="form-label">Location</label>
+                    <input type="text" class="form-control" formControlName="location">
+                </div>
+                <div class="form-group w-full">
+                    <label class="form-label">Industry</label>
+                    <select class="form-control" formControlName="industry">
+                        <option *ngFor="let ind of industries" [value]="ind">{{ ind }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Website</label>
+                <input type="text" class="form-control" formControlName="website">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Customer Potential (INR)</label>
+                <input type="text" class="form-control" formControlName="customerPotential"
+                    placeholder="e.g., 50000 or 5,00,000" pattern="[0-9,]*">
+                <small class="text-secondary">Enter the customer's potential value in INR (Indian Rupees)</small>
+            </div>
+
+            <div class="form-group" *ngIf="isEditMode">
+                <label class="form-label">Current Stage</label>
+                <select class="form-control" formControlName="stage">
+                    <option value="In Progress">In Progress</option>
+                    <option value="Demo Scheduled">Demo Scheduled</option>
+                    <option value="Negotiation">Negotiation</option>
+                    <option value="Closed Won">Closed Won</option>
+                    <option value="Closed Lost">Closed Lost</option>
+                    <option value="Deferred">Deferred</option>
+                </select>
+            </div>
+
+            <div class="contacts-section">
+                <div class="flex justify-between items-center mb-4">
+                    <h3>Contact Persons</h3>
+                    <button type="button" class="btn btn-secondary btn-sm" (click)="addContact()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add Contact
+                    </button>
+                </div>
+
+                <div formArrayName="contacts">
+                    <div *ngFor="let contact of contacts.controls; let i = index" class="contact-card">
+                        <div [formGroupName]="i">
+                            <div class="contact-header">
+                                <h4>Contact Person {{ i + 1 }}</h4>
+                                <button type="button" class="btn-remove" (click)="removeContact(i)"
+                                    *ngIf="contacts.length > 1" title="Remove contact">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="form-group w-full">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" formControlName="name">
+                                </div>
+                                <div class="form-group w-full">
+                                    <label class="form-label">Designation</label>
+                                    <input type="text" class="form-control" formControlName="designation">
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="form-group w-full">
+                                    <label class="form-label">Mobile</label>
+                                    <input type="text" class="form-control" formControlName="mobile">
+                                </div>
+                                <div class="form-group w-full">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" formControlName="email">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Additional Notes</label>
+                <textarea class="form-control" formControlName="additionalNotes" rows="4"
+                    placeholder="Enter any additional details or notes about this customer..."></textarea>
+                <small class="text-secondary">Optional: Add any extra information that might be helpful</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="!customerForm.valid">
+                {{ isEditMode ? 'Update Customer' : 'Create Customer' }}
+            </button>
+        </form>
+    </div>
+</div>

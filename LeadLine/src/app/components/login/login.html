@@ -1,0 +1,43 @@
+<div class="login-container">
+  <div class="card login-card">
+    <h1 class="text-center mb-4">Welcome to LeadLine</h1>
+    <p class="text-center text-secondary mb-4">Sign in to manage your leads and calls</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email" placeholder="Enter your email"
+          [class.error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</span>
+          <span *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="Enter your password"
+          [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</span>
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</span>
+        </div>
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn btn-primary w-full" [disabled]="loginForm.invalid || isLoading">
+        <span *ngIf="!isLoading">Sign In</span>
+        <span *ngIf="isLoading">Signing in...</span>
+      </button>
+    </form>
+
+    <div class="test-credentials">
+      <p class="text-secondary">Test Credentials:</p>
+      <small>Admin: admin@leadline.com / admin123</small><br>
+      <small>User: user@leadline.com / user123</small>
+    </div>
+  </div>
+</div>

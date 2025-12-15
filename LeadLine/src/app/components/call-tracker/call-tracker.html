@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="card">
+        <h2>Log a Call</h2>
+        <form [formGroup]="callForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label class="form-label">Customer</label>
+                <div class="autocomplete-wrapper">
+                    <input type="text" class="form-control" placeholder="Search and select customer..."
+                        [(ngModel)]="customerSearchTerm" [ngModelOptions]="{standalone: true}"
+                        (input)="onCustomerSearch($event)" (focus)="onInputFocus()" (blur)="onInputBlur()"
+                        autocomplete="off">
+                    <div class="autocomplete-dropdown" *ngIf="showDropdown && filteredCustomers.length > 0">
+                        <div *ngFor="let customer of filteredCustomers" class="autocomplete-item"
+                            (click)="selectCustomer(customer)">
+                            <div class="customer-name">{{ customer.companyName }}</div>
+                            <div class="customer-details">{{ customer.location }} • {{ customer.industry }}</div>
+                        </div>
+                    </div>
+                    <div class="autocomplete-dropdown" *ngIf="showDropdown && filteredCustomers.length === 0">
+                        <div class="autocomplete-item no-results">No customers found</div>
+                    </div>
+                </div>
+                <input type="hidden" formControlName="customerId">
+            </div>
+
+            <div class="flex gap-4">
+                <div class="form-group w-full">
+                    <label class="form-label">Attempt Number</label>
+                    <select class="form-control" formControlName="attemptNumber">
+                        <option [value]="1">Attempt 1</option>
+                        <option [value]="2">Attempt 2</option>
+                        <option [value]="3">Attempt 3</option>
+                        <option value="Post Demo Followup 1">Post Demo Followup 1</option>
+                        <option value="Post Demo Followup 2">Post Demo Followup 2</option>
+                        <option value="Post Demo Followup 3">Post Demo Followup 3</option>
+                    </select>
+                </div>
+                <div class="form-group w-full">
+                    <label class="form-label">Status</label>
+                    <select class="form-control" formControlName="status">
+                        <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Comments</label>
+                <textarea class="form-control" rows="3" formControlName="comments"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" formControlName="isDemo">
+                    <span class="form-label" style="margin-bottom: 0;">Demo Scheduled?</span>
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="!callForm.valid">Log Call</button>
+        </form>
+    </div>
+
+    <div class="card recent-calls-card" *ngIf="recentCalls$ | async as calls">
+        <h3>My Recent Calls</h3>
+        <div class="table-responsive">
+            <table class="table calls-table">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Customer</th>
+                        <th>Attempt</th>
+                        <th>Status</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let call of calls">
+                        <td class="date-cell">{{ call.date | date:'MMM d, y, h:mm a' }}</td>
+                        <td class="customer-cell">
+                            <strong>{{ getCustomerName(call.customerId) }}</strong>
+                        </td>
+                        <td class="attempt-cell">{{ call.attemptNumber }}</td>
+                        <td class="status-cell">
+                            <span class="status-badge" [class.success]="call.status === 'Demo Scheduled'"
+                                [class.warning]="call.status === 'Follow up Needed'">
+                                {{ call.status }}
+                            </span>
+                        </td>
+                        <td class="comments-cell">{{ call.comments || '-' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

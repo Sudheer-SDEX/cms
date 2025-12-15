@@ -1,0 +1,158 @@
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-badge.success {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status-badge.warning {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+/* Autocomplete Styles */
+.autocomplete-wrapper {
+  position: relative;
+}
+
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.autocomplete-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover {
+  background-color: #f8fafc;
+}
+
+.autocomplete-item.no-results {
+  color: var(--text-secondary);
+  cursor: default;
+}
+
+.autocomplete-item.no-results:hover {
+  background-color: white;
+}
+
+.customer-name {
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.customer-details {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.autocomplete-wrapper input:focus {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Recent Calls Table Styles */
+.recent-calls-card {
+  margin-top: 2rem;
+}
+
+.recent-calls-card h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.calls-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.calls-table thead {
+  background: #f8fafc;
+}
+
+.calls-table thead th {
+  padding: 0.875rem 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #64748b;
+  text-align: left;
+  border-bottom: 2px solid #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.calls-table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background-color 0.2s ease;
+}
+
+.calls-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.calls-table tbody td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.customer-cell {
+  font-weight: 600;
+  color: #1e293b;
+  min-width: 180px;
+}
+
+.date-cell {
+  color: #64748b;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  min-width: 160px;
+}
+
+.attempt-cell {
+  color: #475569;
+  font-size: 0.875rem;
+  min-width: 100px;
+}
+
+.status-cell {
+  min-width: 150px;
+}
+
+.comments-cell {
+  color: #64748b;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}

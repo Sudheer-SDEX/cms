@@ -1,0 +1,598 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@leadline.com",
+      "password": "admin123",
+      "displayName": "Admin User",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "email": "user@leadline.com",
+      "password": "user123",
+      "displayName": "Regular User",
+      "role": "user"
+    }
+  ],
+  "customers": [
+    {
+      "companyName": "Acme Corporation",
+      "location": "Mumbai",
+      "industry": "Healthcare",
+      "website": "https://acme.com",
+      "stage": "In Progress",
+      "additionalNotes": "",
+      "contactPerson1": {
+        "name": "John Smith",
+        "designation": "CEO",
+        "mobile": "+91-9876543210",
+        "email": "john@acme.com"
+      },
+      "contactPerson2": {
+        "name": "Jane Doe",
+        "designation": "CTO",
+        "mobile": "+91-9876543211",
+        "email": "jane@acme.com"
+      },
+      "contactPerson3": {
+        "name": "",
+        "designation": "",
+        "mobile": "",
+        "email": ""
+      },
+      "auditLog": [
+        {
+          "action": "update",
+          "userId": "2",
+          "timestamp": "2025-12-05T07:25:48.015Z",
+          "details": "Customer updated"
+        },
+        {
+          "action": "update",
+          "userId": "2",
+          "timestamp": "2025-12-06T08:36:01.391Z",
+          "details": "Customer updated"
+        },
+        {
+          "action": "update",
+          "userId": "1",
+          "timestamp": "2025-12-06T08:43:20.806Z",
+          "details": "Customer updated"
+        }
+      ],
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "companyName": "Tech Solutions Ltd",
+      "contactPerson1": {
+        "name": "Raj Kumar",
+        "designation": "Director",
+        "mobile": "+91-9876543220",
+        "email": "raj@techsolutions.com"
+      },
+      "contactPerson2": {
+        "name": "",
+        "designation": "",
+        "mobile": "",
+        "email": ""
+      },
+      "contactPerson3": {
+        "name": "",
+        "designation": "",
+        "mobile": "",
+        "email": ""
+      },
+      "location": "Bangalore",
+      "industry": "Manufacturing",
+      "website": "https://techsolutions.com",
+      "comments": [],
+      "auditLog": [
+        {
+          "action": "create",
+          "userId": "2",
+          "timestamp": "2025-12-05T11:00:00.000Z",
+          "details": "Customer created"
+        },
+        {
+          "action": "update",
+          "userId": "1",
+          "timestamp": "2025-12-06T08:50:16.017Z",
+          "details": "Customer updated"
+        },
+        {
+          "action": "update",
+          "userId": "2",
+          "timestamp": "2025-12-06T08:56:47.196Z",
+          "details": "Customer updated"
+        },
+        {
+          "action": "update",
+          "userId": "2",
+          "timestamp": "2025-12-06T09:00:58.522Z",
+          "details": "Customer updated"
+        },
+        {
+          "action": "update",
+          "userId": "2",
+          "timestamp": "2025-12-11T11:17:12.385Z",
+          "details": "Customer updated"
+        }
+      ],
+      "stage": "Closed Lost"
+    },
+    {
+      "companyName": "dell",
+      "location": "Hyderabad",
+      "industry": "Logistics",
+      "website": "google.com",
+      "contactPerson1": {
+        "name": "name",
+        "designation": "CEO",
+        "mobile": "12345",
+        "email": "email@email.com"
+      },
+      "contactPerson2": {
+        "name": "",
+        "designation": "",
+        "mobile": "",
+        "email": ""
+      },
+      "contactPerson3": {
+        "name": "",
+        "designation": "",
+        "mobile": "",
+        "email": ""
+      },
+      "auditLog": [
+        {
+          "action": "create",
+          "userId": "2",
+          "timestamp": "2025-12-05T06:21:23.887Z",
+          "details": "Customer created"
+        },
+        {
+          "action": "update",
+          "userId": "1",
+          "timestamp": "2025-12-06T08:43:40.956Z",
+          "details": "Customer updated"
+        },
+        {
+          "action": "update",
+          "userId": "1",
+          "timestamp": "2025-12-06T08:49:58.273Z",
+          "details": "Customer updated"
+        },
+        {
+          "action": "update",
+          "userId": "2",
+          "timestamp": "2025-12-11T11:07:03.258Z",
+          "details": "Customer updated"
+        }
+      ],
+      "id": "rLqnwRw",
+      "stage": "In Progress"
+    },
+    {
+      "companyName": "apple",
+      "location": "chennai",
+      "industry": "Logistics",
+      "website": "apple.com",
+      "contactPerson1": {
+        "name": "name",
+        "designation": "ceo",
+        "mobile": "12345",
+        "email": "email@email.com"
+      },
+      "contactPerson2": {
+        "name": "",
+        "designation": "",
+        "mobile": "",
+        "email": ""
+      },
+      "contactPerson3": {
+        "name": "",
+        "designation": "",
+        "mobile": "",
+        "email": ""
+      },
+      "auditLog": [
+        {
+          "action": "create",
+          "userId": "2",
+          "timestamp": "2025-12-05T06:29:30.787Z",
+          "details": "Customer created"
+        },
+        {
+          "action": "update",
+          "userId": "2",
+          "timestamp": "2025-12-11T11:13:45.322Z",
+          "details": "Customer updated"
+        }
+      ],
+      "id": "R84nM9t",
+      "stage": "In Progress"
+    },
+    {
+      "companyName": "apple",
+      "location": "hyderabad",
+      "industry": "Education",
+      "website": "apple.com",
+      "customerPotential": "50000000",
+      "stage": "In Progress",
+      "additionalNotes": "",
+      "contactPerson1": {
+        "name": "name",
+        "designation": "ceo",
+        "mobile": "123455565",
+        "email": "email@email.com"
+      },
+      "contactPerson2": {
+        "name": "",
+        "designation": "",
+        "mobile": "",
+        "email": ""
+      },
+      "contactPerson3": {
+        "name": "",
+        "designation": "",
+        "mobile": "",
+        "email": ""
+      },
+      "auditLog": [
+        {
+          "action": "create",
+          "userId": "1",
+          "timestamp": "2025-12-06T05:36:37.352Z",
+          "details": "Customer created"
+        },
+        {
+          "action": "update",
+          "userId": "2",
+          "timestamp": "2025-12-06T09:05:51.018Z",
+          "details": "Customer updated"
+        }
+      ],
+      "id": "pTNe3wh"
+    },
+    {
+      "companyName": "cust 3",
+      "location": "loc 3",
+      "industry": "Logistics",
+      "website": "web3.com",
+      "customerPotential": "1000000",
+      "stage": "Demo Scheduled",
+      "additionalNotes": "",
+      "contactPerson1": {
+        "name": "name3",
+        "designation": "CFO",
+        "mobile": "1234556",
+        "email": "name3@emil.com"
+      },
+      "contactPerson2": {
+        "name": "",
+        "designation": "",
+        "mobile": "",
+        "email": ""
+      },
+      "contactPerson3": {
+        "name": "",
+        "designation": "",
+        "mobile": "",
+        "email": ""
+      },
+      "auditLog": [
+        {
+          "action": "update",
+          "userId": "1",
+          "timestamp": "2025-12-06T08:41:45.579Z",
+          "details": "Customer updated"
+        },
+        {
+          "action": "update",
+          "userId": "1",
+          "timestamp": "2025-12-06T08:52:02.896Z",
+          "details": "Customer updated"
+        },
+        {
+          "action": "update",
+          "userId": "2",
+          "timestamp": "2025-12-06T08:53:32.507Z",
+          "details": "Customer updated"
+        },
+        {
+          "action": "update",
+          "userId": "2",
+          "timestamp": "2025-12-10T08:18:57.951Z",
+          "details": "Customer updated"
+        }
+      ],
+      "id": "s0mTzj-"
+    },
+    {
+      "companyName": "google",
+      "location": "Hyderabad",
+      "industry": "Manufacturing",
+      "website": "google.com",
+      "customerPotential": "100000000",
+      "stage": "In Progress",
+      "additionalNotes": "comments",
+      "contactPerson1": {
+        "name": "name",
+        "designation": "CEO",
+        "mobile": "12345566",
+        "email": "email2@email.com"
+      },
+      "contactPerson2": {
+        "name": "",
+        "designation": "",
+        "mobile": "",
+        "email": ""
+      },
+      "contactPerson3": {
+        "name": "",
+        "designation": "",
+        "mobile": "",
+        "email": ""
+      },
+      "auditLog": [
+        {
+          "action": "create",
+          "userId": "2",
+          "timestamp": "2025-12-10T08:17:05.423Z",
+          "details": "Customer created"
+        },
+        {
+          "action": "update",
+          "userId": "2",
+          "timestamp": "2025-12-10T08:17:52.871Z",
+          "details": "Customer updated"
+        }
+      ],
+      "id": "EyUA3i2"
+    }
+  ],
+  "callLogs": [
+    {
+      "id": "1",
+      "customerId": "1",
+      "userId": "1",
+      "date": "2025-12-05T10:30:00.000Z",
+      "attemptNumber": 1,
+      "status": "Demo Scheduled",
+      "comments": "Interested in our product. Demo scheduled for next week.",
+      "isDemo": true
+    },
+    {
+      "id": "2",
+      "customerId": "1",
+      "userId": "1",
+      "date": "2025-12-05T11:00:00.000Z",
+      "attemptNumber": 2,
+      "status": "Follow up Needed",
+      "comments": "Need to follow up after demo",
+      "isDemo": false
+    },
+    {
+      "id": "3",
+      "customerId": "2",
+      "userId": "2",
+      "date": "2025-12-05T12:00:00.000Z",
+      "attemptNumber": 1,
+      "status": "Info Sent",
+      "comments": "Sent product brochure via email",
+      "isDemo": false
+    },
+    {
+      "customerId": "rLqnwRw",
+      "attemptNumber": 1,
+      "status": "Demo Scheduled",
+      "comments": "",
+      "isDemo": true,
+      "userId": "2",
+      "date": "2025-12-05T06:21:58.537Z",
+      "id": "lUOY1IQ"
+    },
+    {
+      "customerId": "R84nM9t",
+      "attemptNumber": 1,
+      "status": "Follow up Needed",
+      "comments": "",
+      "isDemo": false,
+      "userId": "2",
+      "date": "2025-12-05T06:29:41.893Z",
+      "id": "p7BEypV"
+    },
+    {
+      "customerId": "1",
+      "attemptNumber": "2",
+      "status": "Demo Scheduled",
+      "comments": "",
+      "isDemo": true,
+      "userId": "2",
+      "date": "2025-12-05T07:18:08.728Z",
+      "id": "YutK4X2"
+    },
+    {
+      "customerId": "1",
+      "attemptNumber": "3",
+      "status": "Demo Scheduled",
+      "comments": "",
+      "isDemo": false,
+      "userId": "2",
+      "date": "2025-12-05T07:25:28.272Z",
+      "id": "3Ye1EiZ"
+    },
+    {
+      "customerId": "1",
+      "attemptNumber": "1",
+      "status": "Info Sent",
+      "comments": "",
+      "isDemo": false,
+      "userId": "2",
+      "date": "2025-12-06T08:36:01.379Z",
+      "id": "i9jMamq"
+    },
+    {
+      "customerId": "1",
+      "attemptNumber": "Post Demo Followup 1",
+      "status": "Follow up Needed",
+      "comments": "",
+      "isDemo": false,
+      "userId": "1",
+      "date": "2025-12-06T08:43:20.792Z",
+      "id": "u9tkjDM"
+    },
+    {
+      "customerId": "rLqnwRw",
+      "attemptNumber": "Post Demo Followup 1",
+      "status": "Follow up Needed",
+      "comments": null,
+      "isDemo": false,
+      "userId": "1",
+      "date": "2025-12-06T08:43:40.949Z",
+      "id": "ZhItH0V"
+    },
+    {
+      "customerId": "rLqnwRw",
+      "attemptNumber": "Post Demo Followup 2",
+      "status": "Follow up Needed",
+      "comments": "",
+      "isDemo": false,
+      "userId": "1",
+      "date": "2025-12-06T08:49:58.264Z",
+      "id": "_qKbGpJ"
+    },
+    {
+      "customerId": "2",
+      "attemptNumber": "Post Demo Followup 1",
+      "status": "Follow up Needed",
+      "comments": "",
+      "isDemo": false,
+      "userId": "1",
+      "date": "2025-12-06T08:50:16.006Z",
+      "id": "6DGo0lA"
+    },
+    {
+      "customerId": "s0mTzj-",
+      "attemptNumber": "2",
+      "status": "Follow up Needed",
+      "comments": "",
+      "isDemo": false,
+      "userId": "1",
+      "date": "2025-12-06T08:50:48.929Z",
+      "id": "yw8rWDt"
+    },
+    {
+      "customerId": "s0mTzj-",
+      "attemptNumber": "1",
+      "status": "Follow up Needed",
+      "comments": null,
+      "isDemo": false,
+      "userId": "1",
+      "date": "2025-12-06T08:51:46.061Z",
+      "id": "750BZSk"
+    },
+    {
+      "customerId": "s0mTzj-",
+      "attemptNumber": 1,
+      "status": "Follow up Needed",
+      "comments": null,
+      "isDemo": false,
+      "userId": "1",
+      "date": "2025-12-06T08:52:02.889Z",
+      "id": "I6av1Ul"
+    },
+    {
+      "customerId": "s0mTzj-",
+      "attemptNumber": "Post Demo Followup 1",
+      "status": "Follow up Needed",
+      "comments": "",
+      "isDemo": false,
+      "userId": "2",
+      "date": "2025-12-06T08:53:32.499Z",
+      "id": "LeQlBRp"
+    },
+    {
+      "customerId": "2",
+      "attemptNumber": "Post Demo Followup 2",
+      "status": "Follow up Needed",
+      "comments": "",
+      "isDemo": false,
+      "userId": "2",
+      "date": "2025-12-06T08:56:47.186Z",
+      "id": "MT2uixN"
+    },
+    {
+      "customerId": "2",
+      "attemptNumber": "Post Demo Followup 3",
+      "status": "Follow up Needed",
+      "comments": "",
+      "isDemo": false,
+      "userId": "2",
+      "date": "2025-12-06T09:00:58.513Z",
+      "id": "tg8ds7R"
+    },
+    {
+      "customerId": "pTNe3wh",
+      "attemptNumber": "1",
+      "status": "Follow up Needed",
+      "comments": "",
+      "isDemo": false,
+      "userId": "2",
+      "date": "2025-12-06T09:05:51.009Z",
+      "id": "GYi0Hev"
+    },
+    {
+      "customerId": "EyUA3i2",
+      "attemptNumber": 1,
+      "status": "Info Sent",
+      "comments": "",
+      "isDemo": false,
+      "userId": "2",
+      "date": "2025-12-10T08:17:52.862Z",
+      "id": "rePbivu"
+    },
+    {
+      "customerId": "s0mTzj-",
+      "attemptNumber": "Post Demo Followup 2",
+      "status": "Demo Scheduled",
+      "comments": "",
+      "isDemo": false,
+      "userId": "2",
+      "date": "2025-12-10T08:18:57.942Z",
+      "id": "w_l1Q1D"
+    },
+    {
+      "customerId": "rLqnwRw",
+      "attemptNumber": "2",
+      "status": "Info Sent",
+      "comments": "",
+      "isDemo": false,
+      "userId": "2",
+      "date": "2025-12-11T11:07:03.242Z",
+      "id": "JZTNux2"
+    },
+    {
+      "customerId": "R84nM9t",
+      "attemptNumber": "3",
+      "status": "Follow up Needed",
+      "comments": "01 Jan 25 call back",
+      "isDemo": false,
+      "userId": "2",
+      "date": "2025-12-11T11:13:45.310Z",
+      "id": "zvuAtex"
+    },
+    {
+      "customerId": "2",
+      "attemptNumber": "2",
+      "status": "Firm No",
+      "comments": "",
+      "isDemo": false,
+      "userId": "2",
+      "date": "2025-12-11T11:17:12.374Z",
+      "id": "WR5sq9N"
+    }
+  ]
+}
